@@ -1,20 +1,20 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { Gamepad, TrendingUp, Layers3, Star, Users, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+export const navItems = [
+  { path: "/", label: "Dashboard", icon: <Gamepad className="w-5 h-5" /> },
+  { path: "/restaking", label: "Yield Restaking", icon: <TrendingUp className="w-5 h-5" /> },
+  { path: "/arbitrage", label: "NFT Arbitrage", icon: <Layers3 className="w-5 h-5" /> },
+  { path: "/recommendations", label: "AI Recommendations", icon: <Star className="w-5 h-5" /> },
+  { path: "/profiles", label: "Gamer Profiles", icon: <Users className="w-5 h-5" /> },
+  { path: "/play-to-earn", label: "Play to Earn", icon: <Wallet className="w-5 h-5" /> }
+];
 
 const Sidebar = () => {
   const location = useLocation();
   
-  const navItems = [
-    { path: "/", label: "Dashboard", icon: <Gamepad className="w-5 h-5" /> },
-    { path: "/restaking", label: "Yield Restaking", icon: <TrendingUp className="w-5 h-5" /> },
-    { path: "/arbitrage", label: "NFT Arbitrage", icon: <Layers3 className="w-5 h-5" /> },
-    { path: "/recommendations", label: "AI Recommendations", icon: <Star className="w-5 h-5" /> },
-    { path: "/profiles", label: "Gamer Profiles", icon: <Users className="w-5 h-5" /> },
-    { path: "/play-to-earn", label: "Play to Earn", icon: <Wallet className="w-5 h-5" /> }
-  ];
-
   return (
     <div className="hidden md:flex flex-col w-64 bg-sidebar border-r border-border/40">
       <div className="p-4 border-b border-border/40">
@@ -44,6 +44,12 @@ const Sidebar = () => {
               </Link>
             </li>
           ))}
+          <li>
+            <Button className="nav-link w-full justify-start" variant="ghost">
+              <Wallet className="w-5 h-5" />
+              <span>Connect Wallet</span>
+            </Button>
+          </li>
         </ul>
       </nav>
       <div className="p-4 border-t border-border/40">

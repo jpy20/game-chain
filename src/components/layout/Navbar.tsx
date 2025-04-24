@@ -8,17 +8,52 @@ import {
   DropdownMenuSeparator, 
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
-import { Gamepad, Menu, Bell, ChevronDown } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Gamepad, Menu, Bell, ChevronDown, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
+import { navItems } from "./Sidebar";
 
 const Navbar = () => {
   return (
     <header className="border-b border-border/40 py-4 px-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="icon" className="md:hidden">
-            <Menu className="h-5 w-5" />
-          </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 p-0">
+              <div className="p-4 border-b border-border/40">
+                <div className="flex items-center gap-2">
+                  <Gamepad className="text-game-primary h-5 w-5" />
+                  <span className="font-bold">GameChain Oasis</span>
+                </div>
+              </div>
+              <nav className="flex-1 py-4 px-2">
+                <ul className="space-y-1">
+                  {navItems.map((item) => (
+                    <li key={item.path}>
+                      <Link
+                        to={item.path}
+                        className="nav-link"
+                      >
+                        {item.icon}
+                        <span>{item.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Button className="nav-link w-full justify-start" variant="ghost">
+                      <Wallet className="w-5 h-5" />
+                      <span>Connect Wallet</span>
+                    </Button>
+                  </li>
+                </ul>
+              </nav>
+            </SheetContent>
+          </Sheet>
           <div className="md:hidden flex items-center gap-2">
             <Gamepad className="text-game-primary h-5 w-5" />
             <span className="font-bold">GameChain Oasis</span>

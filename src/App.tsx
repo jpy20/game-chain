@@ -11,6 +11,7 @@ import RecommendationsPage from "./pages/RecommendationsPage";
 import ProfilesPage from "./pages/ProfilesPage";
 import PlayToEarnPage from "./pages/PlayToEarnPage";
 import NotFound from "./pages/NotFound";
+import GamerProfilePage from "./pages/GamerProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/arbitrage" element={<ArbitragePage />} />
           <Route path="/recommendations" element={<RecommendationsPage />} />
           <Route path="/profiles" element={<ProfilesPage />} />
+          <Route path="/profiles/:id" element={<GamerProfilePage />} />
           <Route path="/play-to-earn" element={<PlayToEarnPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
