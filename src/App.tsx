@@ -1,4 +1,5 @@
 
+import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,27 +14,32 @@ import PlayToEarnPage from "./pages/PlayToEarnPage";
 import NotFound from "./pages/NotFound";
 import GamerProfilePage from "./pages/GamerProfilePage";
 
-const queryClient = new QueryClient();
+// Create a new QueryClient instance inside the component
+const App = () => {
+  const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/restaking" element={<RestakingPage />} />
-          <Route path="/arbitrage" element={<ArbitragePage />} />
-          <Route path="/recommendations" element={<RecommendationsPage />} />
-          <Route path="/profiles" element={<ProfilesPage />} />
-          <Route path="/profiles/:id" element={<GamerProfilePage />} />
-          <Route path="/play-to-earn" element={<PlayToEarnPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+  return (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/restaking" element={<RestakingPage />} />
+              <Route path="/arbitrage" element={<ArbitragePage />} />
+              <Route path="/recommendations" element={<RecommendationsPage />} />
+              <Route path="/profiles" element={<ProfilesPage />} />
+              <Route path="/profiles/:id" element={<GamerProfilePage />} />
+              <Route path="/play-to-earn" element={<PlayToEarnPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
+};
 
 export default App;
