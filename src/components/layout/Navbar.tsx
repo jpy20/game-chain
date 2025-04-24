@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu, 
@@ -12,6 +11,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Gamepad, Menu, Bell, ChevronDown, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { navItems } from "./Sidebar";
+import WalletButton from "../wallet/WalletButton";
 
 const Navbar = () => {
   return (
@@ -45,10 +45,7 @@ const Navbar = () => {
                     </li>
                   ))}
                   <li>
-                    <Button className="nav-link w-full justify-start" variant="ghost">
-                      <Wallet className="w-5 h-5" />
-                      <span>Connect Wallet</span>
-                    </Button>
+                    <WalletButton />
                   </li>
                 </ul>
               </nav>
