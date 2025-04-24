@@ -5,9 +5,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { WagmiConfig } from 'wagmi';
-import { config, ethereumClient } from './config/wagmi';
-import { Web3Modal } from '@web3modal/react';
+import { WagmiProvider } from 'wagmi';
+import { config, projectId } from './config/wagmi';
 import Index from "./pages/Index";
 import RestakingPage from "./pages/RestakingPage";
 import ArbitragePage from "./pages/ArbitragePage";
@@ -22,7 +21,7 @@ const App = () => {
 
   return (
     <React.StrictMode>
-      <WagmiConfig config={config}>
+      <WagmiProvider config={config}>
         <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <Toaster />
@@ -41,8 +40,7 @@ const App = () => {
             </BrowserRouter>
           </TooltipProvider>
         </QueryClientProvider>
-      </WagmiConfig>
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      </WagmiProvider>
     </React.StrictMode>
   );
 };

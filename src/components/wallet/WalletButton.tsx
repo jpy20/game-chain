@@ -11,7 +11,7 @@ const WalletButton = () => {
     <Button
       onClick={isConnected ? disconnect : connect}
       variant="outline"
-      className="flex items-center gap-2"
+      className="flex items-center gap-2 w-full justify-start"
     >
       <Wallet className="h-4 w-4" />
       {isConnected ? shortenAddress(address as string) : "Connect Wallet"}

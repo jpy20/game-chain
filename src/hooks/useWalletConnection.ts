@@ -1,32 +1,47 @@
 
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { mainnet } from 'wagmi/chains';
+import { toast } from '@/hooks/use-toast';
 
 export const useWalletConnection = () => {
   const { address, isConnected } = useAccount();
-  const { connectAsync, connectors } = useConnect();
-  const { disconnectAsync } = useDisconnect();
+  const { connect, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
 
   const handleConnect = async () => {
-    if (!isConnected) {
-      try {
-        const connector = connectors.find(c => c.ready);
-        if (connector) {
-          await connectAsync({ connector, chainId: mainnet.id });
-          console.log("Connected to wallet");
-        } else {
-          console.error('No connector found');
-        }
-      } catch (error) {
-        console.error('Failed to connect:', error);
+    try {
+      const availableConnector = connectors.find(c => c.ready);
+      
+      if (availableConnector) {
+        connect({ connector: availableConnector });
+        toast({
+          title: "Wallet Connection",
+          description: "Connection initiated. Please approve in your wallet.",
+        });
+      } else {
+        toast({
+          title: "Connection Error",
+          description: "No wallet connector available. Please install a wallet extension.",
+          variant: "destructive",
+        });
+        console.error('No connector available');
       }
+    } catch (error) {
+      toast({
+        title: "Connection Failed",
+        description: "Failed to connect wallet. Please try again.",
+        variant: "destructive",
+      });
+      console.error('Failed to connect:', error);
     }
   };
 
-  const handleDisconnect = async () => {
+  const handleDisconnect = () => {
     try {
-      await disconnectAsync();
-      console.log("Disconnected from wallet");
+      disconnect();
+      toast({
+        title: "Wallet Disconnected",
+        description: "Your wallet has been disconnected",
+      });
     } catch (error) {
       console.error('Failed to disconnect:', error);
     }
