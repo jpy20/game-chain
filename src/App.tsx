@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -5,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WagmiConfig } from 'wagmi';
-import { config } from './config/wagmi';
+import { config, ethereumClient } from './config/wagmi';
 import { Web3Modal } from '@web3modal/react';
 import Index from "./pages/Index";
 import RestakingPage from "./pages/RestakingPage";
@@ -41,7 +42,7 @@ const App = () => {
           </TooltipProvider>
         </QueryClientProvider>
       </WagmiConfig>
-      <Web3Modal />
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </React.StrictMode>
   );
 };

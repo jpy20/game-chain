@@ -1,10 +1,12 @@
 
 import { createConfig, configureChains } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
-import { createWeb3Modal } from '@web3modal/react';
-import { w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+import { EthereumClient, w3mConnectors, w3mProvider } from '@web3modal/ethereum';
+import { Web3Modal } from '@web3modal/react';
 
-const projectId = 'YOUR_WALLETCONNECT_PROJECT_ID'; // Replace this with your WalletConnect Cloud project ID
+// Replace this with your actual WalletConnect Cloud project ID if you have one
+// You can get one for free at https://cloud.walletconnect.com/
+const projectId = 'YOUR_WALLETCONNECT_PROJECT_ID';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [mainnet, sepolia],
@@ -18,9 +20,4 @@ export const config = createConfig({
   webSocketPublicClient,
 });
 
-createWeb3Modal({
-  wagmiConfig: config,
-  projectId,
-  chains,
-  themeMode: 'dark',
-});
+export const ethereumClient = new EthereumClient(config, chains);

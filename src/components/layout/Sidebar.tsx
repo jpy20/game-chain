@@ -1,7 +1,8 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { Gamepad, TrendingUp, Layers3, Star, Users, Wallet } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import WalletButton from "../wallet/WalletButton";
 
 export const navItems = [
   { path: "/", label: "Dashboard", icon: <Gamepad className="w-5 h-5" /> },
@@ -45,10 +46,7 @@ const Sidebar = () => {
             </li>
           ))}
           <li>
-            <Button className="nav-link w-full justify-start" variant="ghost">
-              <Wallet className="w-5 h-5" />
-              <span>Connect Wallet</span>
-            </Button>
+            <WalletButton />
           </li>
         </ul>
       </nav>
